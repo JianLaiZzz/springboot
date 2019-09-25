@@ -13,6 +13,12 @@ public class HelloController
 	@Value("${age}")
 	private int age;
 
+	/*@RequestMapping("/hello")
+	public String hello()
+	{
+		return name+age;
+	}*/
+
 	@RequestMapping("/hello")
 	public String hello()
 	{
