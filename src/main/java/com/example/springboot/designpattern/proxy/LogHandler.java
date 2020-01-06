@@ -1,0 +1,53 @@
+package com.example.springboot.designpattern.proxy;
+
+
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+/**
+ * @author: zhw
+ * @createDate: 2020/1/4
+ */
+public class LogHandler implements InvocationHandler
+{
+	private Object targetObject;
+
+	public Object newProxyInstance(Object targetObject)
+	{
+
+		this.targetObject = targetObject;
+		return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(),
+				targetObject.getClass().getInterfaces(), this);
+	}
+
+	//代理模式内部要毁掉的方法
+	@Override
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
+	{
+		System.out.println("start-->>" + method.getName());
+		for (int i = 0; i < args.length; i++)
+		{
+			System.out.println(args[i]);
+		}
+		Object ret = null;
+		try
+		{
+			//调用目标方法，如果目标方法有返回值，返回ret,如果没有抛出异常
+			ret = method.invoke(targetObject, args);
+			System.out.println("success-->>" + method.getName()); //方法执行后操作
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			System.out.println("error-->>" + method.getName());//出现异常时的操作
+			throw e;
+		}
+		return ret;
+	}
+
+
+
+
+}
