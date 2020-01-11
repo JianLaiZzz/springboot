@@ -1,5 +1,8 @@
 package com.example.springboot;
 
+import com.example.springboot.bean.Person;
+import com.zhw.springboot.statrt.hello.Hello;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,12 @@ public class HelloController
 	@Value("${age}")
 	private int age;
 
+	@Autowired
+	private Hello h;
+
+	@Autowired
+	private Person person;
+
 	/*@RequestMapping("/hello")
 	public String hello()
 	{
@@ -22,6 +31,10 @@ public class HelloController
 	@RequestMapping("/hello")
 	public String hello()
 	{
-		return name+age;
+
+		System.out.println(person.toString());
+
+		h.sayHello();
+		return h.sayHello();
 	}
 }
