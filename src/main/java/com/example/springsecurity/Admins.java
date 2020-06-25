@@ -1,4 +1,4 @@
-package com.example.springboot.springsecurity;
+package com.example.springsecurity;
 
 import java.io.Serializable;
 import java.util.Date;
