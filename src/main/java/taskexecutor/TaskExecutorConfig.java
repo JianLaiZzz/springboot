@@ -1,4 +1,4 @@
-package com.example.spring.framework.taskexecutor;
+package taskexecutor;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
@@ -15,7 +15,7 @@ import java.util.concurrent.Executor;
  * @createDate: 2020/1/4
  */
 @Configuration
-@ComponentScan("com.example.spring.framework.taskexecutor")
+@ComponentScan("taskexecutor")
 @EnableAsync
 public class TaskExecutorConfig implements AsyncConfigurer
 {

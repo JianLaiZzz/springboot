@@ -1,4 +1,4 @@
-package com.example.spring.framework.taskexecutor;
+package taskexecutor;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

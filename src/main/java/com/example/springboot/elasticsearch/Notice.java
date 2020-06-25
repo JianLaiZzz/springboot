@@ -1,40 +1,58 @@
 package com.example.springboot.elasticsearch;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * @author: zhw
  * @createDate: 2020/1/11
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 //indexName代表所以名称,type代表表名称
-@Document(indexName = "wantu_notice_info", type = "doc")
+@Document(indexName = "user", type = "docs", shards = 1, replicas = 0)
 public class Notice {
-    //id
-    @JsonProperty("auto_id")
-    private Long id;
+    //主键自增长
+    @Id
+    private Long id;//主键
 
-    //标题
-    @JsonProperty("title")
-    private String title;
+    @Field(type = FieldType.Text, analyzer = "ik_max_word")
+    private String userName;
+    private String userPhone;
 
-    //公告标签
-    @JsonProperty("exchange_mc")
-    private String exchangeMc;
 
-    //公告发布时间
-    @JsonProperty("create_time")
-    private String originCreateTime;
+    public Long getId() {
+        return id;
+    }
 
-    //公告阅读数量
-    @JsonProperty("read_count")
-    private Integer readCount;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    @Override
+    public String toString() {
+        return "UserES{" +
+                "userId=" + id +
+                ", userName='" + userName + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                '}';
+    }
 
 }

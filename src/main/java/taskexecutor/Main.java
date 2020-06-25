@@ -1,4 +1,4 @@
-package com.example.spring.framework.taskexecutor;
+package taskexecutor;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
